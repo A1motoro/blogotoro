@@ -23,13 +23,15 @@ export const articleMetadata = {
       "title": "Hello World - 编程入门指南",
       "date": "December 25, 2024",
       "category": "Programming",
-      "readTime": "3 min"
+      "readTime": "3 min",
+      "description": "\"你好，世界！\"是每个程序员学习编程时的第一步。这个简单的程序不仅仅是代码，更代表着你正式迈入编程世界的大门。"
     },
     "en": {
       "title": "Hello World - A Programmer's First Step",
       "date": "December 25, 2024",
       "category": "Programming",
-      "readTime": "3 min"
+      "readTime": "3 min",
+      "description": "\"Hello, World!\" is the first step every programmer takes when learning to code. This simple program represents not just lines of code, but your official entry into the world of programming."
     }
   },
   "syntax-candy-python": {
@@ -37,13 +39,15 @@ export const articleMetadata = {
       "title": "Python 中的语法糖",
       "date": "October 10, 2025",
       "category": "Programming",
-      "readTime": "TBD"
+      "readTime": "TBD",
+      "description": "本文将要介绍几个 Python 中优雅的语法糖，熟练运用这些巧妙的语法糖可以让你的代码变得更加 Pythonic 哦！"
     },
     "en": {
       "title": "Python Syntax Sugar",
       "date": "October 10, 2025",
       "category": "Programming",
-      "readTime": "TBD"
+      "readTime": "TBD",
+      "description": "This article will introduce several elegant syntax sugars in Python. Mastering these clever syntax sugars can make your code more Pythonic!"
     }
   }
 };
@@ -76,7 +80,8 @@ export const useArticles = () => {
           return {
             id: slug,
             ...metadata,
-            icon: getIconForCategory(metadata.category)
+            icon: getIconForCategory(metadata.category),
+            excerpt: metadata.description || metadata.excerpt || 'Click to read this article...'
           };
         } catch (error) {
           console.warn('Error processing article:', slug, error);

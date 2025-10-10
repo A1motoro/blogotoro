@@ -29,7 +29,7 @@ const Home = () => {
                   <div className="blog-meta">
                     Published on {post.date} • {post.readTime} • {post.category}
                   </div>
-                  <p className="blog-excerpt">{post.excerpt}</p>
+                  <p className="blog-excerpt">{post.excerpt || post.description || 'Click to read this article...'}</p>
                   <div className="read-more">Read Full Post →</div>
                 </div>
               </Link>
@@ -57,7 +57,7 @@ const Home = () => {
                   <div className="blog-meta">
                     Published on {post.date} • {post.readTime}
                   </div>
-                  <p className="blog-excerpt">{post.excerpt}</p>
+                  <p className="blog-excerpt">{post.excerpt || post.description || 'Click to read this article...'}</p>
                   <div className="read-more">Read More →</div>
                 </div>
               </Link>
