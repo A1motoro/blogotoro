@@ -11,6 +11,7 @@ const generateTOC = (markdownContent) => {
   // Handle both \r\n and \n line endings
   const lines = markdownContent.split(/\r?\n/);
   const tocItems = [];
+  let inCodeBlock = false;
 
   lines.forEach((line, index) => {
     // Check for code block markers (```)
