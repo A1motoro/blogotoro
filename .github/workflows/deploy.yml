@@ -16,10 +16,10 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Setup Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
 
@@ -27,7 +27,13 @@ jobs:
       run: npm ci
 
     - name: Build
-      run: npm run build
+      run: |
+        echo "Current directory: $(pwd)"
+        echo "Files in directory:"
+        ls -la
+        echo "Public directory contents:"
+        ls -la public/
+        npm run build
 
     - name: Setup Pages
       uses: actions/configure-pages@v4
