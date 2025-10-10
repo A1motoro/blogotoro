@@ -60,27 +60,46 @@ class ErrorBoundary extends React.Component {
   }
 }
 
+// Simple test component
+const TestHome = () => {
+  return (
+    <div className="container">
+      <h1>Welcome to BLOGIIIIII</h1>
+      <p>This is a test to see if the app loads correctly.</p>
+      <div style={{ padding: '20px', background: '#1e1e1e', borderRadius: '8px', margin: '20px 0' }}>
+        <h2>Test Articles</h2>
+        <div style={{ margin: '10px 0' }}>
+          <h3>Hello World Article</h3>
+          <p>A programming introduction article.</p>
+          <a href="/blogotoro/post/hello-world" style={{ color: '#a6e22e' }}>Read Article →</a>
+        </div>
+        <div style={{ margin: '10px 0' }}>
+          <h3>Python Syntax Sugar</h3>
+          <p>Learn about Python syntax sugar features.</p>
+          <a href="/blogotoro/post/syntax-candy-python" style={{ color: '#a6e22e' }}>Read Article →</a>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 function App() {
   return (
-    <ErrorBoundary>
-      <Suspense fallback={<LoadingFallback />}>
-        <Router basename="/blogotoro">
-          <div className="App">
-            <Header />
-            <main>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/post/:slug" element={<BlogPost />} />
-                <Route path="/category/:category" element={<Category />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-              </Routes>
-            </main>
-            <Footer />
-          </div>
-        </Router>
-      </Suspense>
-    </ErrorBoundary>
+    <Router basename="/blogotoro">
+      <div className="App">
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={<TestHome />} />
+            <Route path="/post/:slug" element={<BlogPost />} />
+            <Route path="/category/:category" element={<Category />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
