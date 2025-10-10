@@ -42,10 +42,10 @@ const About = () => {
             <p>This blog is my way of contributing to the developer community and documenting my growth as a programmer and problem solver.</p>
 
             <div className="social-links">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/A1motoro" target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-github"></i>
               </a>
-              <a href="mailto:your-email@example.com">
+              <a href="mailto:Almoonex@outlook.com">
                 <i className="fas fa-envelope"></i>
               </a>
             </div>

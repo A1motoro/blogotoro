@@ -42,7 +42,7 @@ const Contact = () => {
                 <i className="fas fa-envelope"></i>
                 <div>
                   <h3>Email</h3>
-                  <p>your-email@example.com</p>
+                  <p>Almoonex@outlook.com</p>
                 </div>
               </div>
 
@@ -50,7 +50,7 @@ const Contact = () => {
                 <i className="fab fa-github"></i>
                 <div>
                   <h3>GitHub</h3>
-                  <p>github.com/yourusername</p>
+                  <p>github.com/A1motoro</p>
                 </div>
               </div>
 
@@ -64,10 +64,10 @@ const Contact = () => {
             </div>
 
             <div className="social-links">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/A1motoro" target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-github"></i>
               </a>
-              <a href="mailto:your-email@example.com">
+              <a href="mailto:Almoonex@outlook.com">
                 <i className="fas fa-envelope"></i>
               </a>
             </div>

@@ -53,9 +53,6 @@ const Header = () => {
           >
             Contact
           </Link>
-          <Link to="/portfolio.html" onClick={closeMenu}>
-            Portfolio
-          </Link>
         </div>
 
         <div className="mobile-menu" onClick={toggleMenu}>
