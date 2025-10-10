@@ -64,7 +64,7 @@ function App() {
   return (
     <ErrorBoundary>
       <Suspense fallback={<LoadingFallback />}>
-        <Router>
+        <Router basename="/blogotoro">
           <div className="App">
             <Header />
             <main>
