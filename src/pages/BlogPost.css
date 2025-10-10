@@ -74,7 +74,7 @@
 
 .post-content p {
   margin-bottom: 1.5rem;
-  color: var(--monokai-comment);
+  color: var(--monokai-fg);
 }
 
 .post-content ul,

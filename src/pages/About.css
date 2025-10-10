@@ -37,7 +37,7 @@
 }
 
 .about-text p {
-  color: var(--monokai-comment);
+  color: var(--monokai-fg);
   line-height: 1.8;
   margin-bottom: 1.5rem;
   font-size: 1.1rem;

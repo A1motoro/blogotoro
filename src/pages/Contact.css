@@ -17,7 +17,7 @@
 }
 
 .contact-info > p {
-  color: var(--monokai-comment);
+  color: var(--monokai-fg);
   line-height: 1.8;
   margin-bottom: 2rem;
   font-size: 1.1rem;
