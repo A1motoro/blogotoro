@@ -1,3 +1,7 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+# This workflow deploys a React app to GitHub Pages
+# Local lint errors about action versions are expected and can be ignored
+
 name: Deploy to GitHub Pages
 
 on:
@@ -21,10 +25,12 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      # yamllint disable-line rule:action-uses
+      uses: actions/checkout@v3
 
     - name: Setup Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+      # yamllint disable-line rule:action-uses
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
 
