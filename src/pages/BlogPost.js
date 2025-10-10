@@ -392,17 +392,7 @@ const BlogPost = () => {
                       .replace(/[^\w\u4e00-\u9fff]+/g, '-')
                       .replace(/^-+|-+$/g, '');
 
-                    const handleClick = (e) => {
-                      e.preventDefault();
-                      const element = document.getElementById(englishId);
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
-                        // Update URL without triggering navigation
-                        window.history.replaceState(null, null, `#${englishId}`);
-                      }
-                    };
-
-                    return <a href={`#${englishId}`} onClick={handleClick} {...props}>{children}</a>;
+                    return <a href={`#${englishId}`} {...props}>{children}</a>;
                   }
                   return <a href={href} {...props}>{children}</a>;
                 }
@@ -440,7 +430,10 @@ const BlogPost = () => {
                             e.preventDefault();
                             const element = document.getElementById(item.id);
                             if (element) {
-                              element.scrollIntoView({ behavior: 'smooth' });
+                              // Use setTimeout to ensure smooth scrolling works properly
+                              setTimeout(() => {
+                                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                              }, 0);
                               window.history.replaceState(null, null, `#${item.id}`);
                             }
                           }}
