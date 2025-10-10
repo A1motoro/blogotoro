@@ -13,6 +13,18 @@ const generateTOC = (markdownContent) => {
   const tocItems = [];
 
   lines.forEach((line, index) => {
+    // Check for code block markers (```)
+    if (line.trim().startsWith('```')) {
+      inCodeBlock = !inCodeBlock;
+      return; // Skip code block markers
+    }
+
+    // Skip lines inside code blocks
+    if (inCodeBlock) {
+      return;
+    }
+
+    // Only match headings that are NOT inside code blocks
     const headingMatch = line.match(/^(#{1,6})\s+(.+)$/);
     if (headingMatch) {
       const level = headingMatch[1].length;
@@ -411,7 +423,7 @@ const BlogPost = () => {
             <aside className="toc-sidebar">
               <div className="toc-container">
                 <h3 className="toc-title">
-                  <i className="fas fa-list"></i> Table of Contents
+                  <i className="fas fa-list"></i> {i18n.language === 'zh' ? '目录' : 'Table of Contents'}
                 </h3>
                 <nav className="toc-nav">
                   <ul className="toc-list">
