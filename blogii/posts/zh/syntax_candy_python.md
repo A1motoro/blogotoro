@@ -2,7 +2,7 @@
 
 **Published:** October 10, 2025
 **Category:** Programming
-**Read Time:** TBD
+**Read Time:** 12 min
 
 本文将要介绍几个 Python 中优雅的语法糖，熟练运用这些巧妙的语法糖可以让你的代码变得更加 Pythonic 哦！
 

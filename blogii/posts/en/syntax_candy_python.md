@@ -2,7 +2,7 @@
 
 **Published:** October 10, 2025
 **Category:** Programming
-**Read Time:** TBD
+**Read Time:** 12 min
 
 This article will introduce several elegant syntax sugars in Python. Mastering these clever syntax sugars can make your code more Pythonic!
 
