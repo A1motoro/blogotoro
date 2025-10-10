@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import './App.css';
 import './i18n'; // Import i18n configuration
 
@@ -20,7 +21,24 @@ import './pages/BlogPost.css';
 import './pages/About.css';
 import './pages/Contact.css';
 
-function App() {
+// Loading component
+const LoadingFallback = () => (
+  <div className="loading-fallback">
+    <div className="loading-content">
+      <div className="loading-text">Initializing...</div>
+      <div className="loading-dots"></div>
+    </div>
+  </div>
+);
+
+// Main App component that waits for i18n
+function AppContent() {
+  const { ready } = useTranslation();
+
+  if (!ready) {
+    return <LoadingFallback />;
+  }
+
   return (
     <Router>
       <div className="App">
@@ -37,6 +55,14 @@ function App() {
         <Footer />
       </div>
     </Router>
+  );
+}
+
+function App() {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <AppContent />
+    </Suspense>
   );
 }
 
