@@ -73,68 +73,8 @@ const recentPosts = [
 ];
 
 const Home = () => {
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <div className="home">
-      {/* Hero Section */}
-      <section id="home" className="hero">
-        <div className="diagonal-lines">
-          {/* Diagonal lines for background effect */}
-          <div className="diagonal-line line-1"></div>
-          <div className="diagonal-line line-2"></div>
-          <div className="diagonal-line line-3"></div>
-          <div className="diagonal-line line-4"></div>
-          <div className="diagonal-line line-5"></div>
-          <div className="diagonal-line line-6"></div>
-          <div className="diagonal-line line-7"></div>
-          <div className="diagonal-line line-8"></div>
-          <div className="diagonal-line line-9"></div>
-          <div className="diagonal-line line-10"></div>
-          <div className="diagonal-line line-11"></div>
-          <div className="diagonal-line line-12"></div>
-        </div>
-
-        <div className="hero-gradient-overlay"></div>
-
-        <div className="container hero-content">
-          <div className="hero-icon">
-            <i className="fas fa-code"></i>
-          </div>
-
-          <h1 className="hero-title">
-            <span className="hero-subtitle">Welcome to</span>
-            <span className="hero-main-title gradient-text">BLOGIIIIII</span>
-          </h1>
-
-          <p className="hero-description">
-            Exploring{' '}
-            <span className="highlight">data structures</span>,{' '}
-            <span className="highlight">algorithms</span>, and{' '}
-            <span className="highlight">programming concepts</span>
-          </p>
-
-          <div className="hero-cta-container">
-            <button
-              className="btn primary"
-              onClick={() => scrollToSection('featured')}
-            >
-              <i className="fas fa-star"></i> Read Featured Post
-            </button>
-            <button
-              className="btn btn-secondary"
-              onClick={() => scrollToSection('blog')}
-            >
-              <i className="fas fa-blog"></i> View All Posts
-            </button>
-          </div>
-        </div>
-      </section>
 
       {/* Featured Posts Section */}
       <section id="featured" className="featured-posts">
@@ -192,30 +132,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="about">
-        <div className="container">
-          <h2 className="section-title">About Me</h2>
-          <div className="about-content">
-            <div className="about-image">
-              <i className="fas fa-user"></i>
-            </div>
-            <div className="about-text">
-              <h3>Hello, I'm A1m</h3>
-              <p>I'm a passionate writer, developer, and lifelong learner who loves sharing knowledge and experiences through this blog. With a background in technology and a curiosity for the world around us, I write about everything from coding tutorials to personal reflections.</p>
-              <p>When I'm not writing or coding, you can find me exploring new places, reading books, or experimenting with new technologies. I believe in continuous learning and sharing that knowledge with others.</p>
-              <div className="social-links">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-                  <i className="fab fa-github"></i>
-                </a>
-                <a href="mailto:your-email@example.com">
-                  <i className="fas fa-envelope"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
