@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>BLOGIIIIII - Developer & Writer</title>
+    <meta name="description" content="A personal blog sharing thoughts on technology, development, and life experiences with a modern VSCode Monokai theme.">
+    <meta name="keywords" content="blog, developer, technology, programming, personal">
+    <meta name="author" content="A1m">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- MathJax for LaTeX math support -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* Loading screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 50%);
+            z-index: 9999;
+            font-family: 'Courier New', monospace;
+        }
+
+        .loading-content {
+            text-align: center;
+            color: #a6e22e;
+        }
+
+        .loading-text {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .loading-dots {
+            display: inline-block;
+        }
+
+        .loading-dots::after {
+            content: '';
+            animation: dots 1.5s infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: ''; }
+            40% { content: '.'; }
+            60% { content: '..'; }
+            80%, 100% { content: '...'; }
+        }
+
+        /* Hide loading screen when React loads */
+        .loaded #loading-screen {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-text">Loading BLOGIIIIII</div>
+            <div class="loading-dots"></div>
+        </div>
+    </div>
+    <div id="root"></div>
+</body>
+</html>
