@@ -27,12 +27,16 @@ jobs:
       run: npm ci
 
     - name: Build
+      env:
+        CI: false
       run: |
         echo "Current directory: $(pwd)"
         echo "Files in directory:"
         ls -la
         echo "Public directory contents:"
         ls -la public/
+        echo "Node version: $(node --version)"
+        echo "NPM version: $(npm --version)"
         npm run build
 
     - name: Setup Pages
