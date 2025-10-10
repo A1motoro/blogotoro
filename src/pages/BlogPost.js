@@ -11,7 +11,8 @@ const generateTOC = (markdownContent) => {
   console.log('TOC Debug - Content length:', markdownContent.length);
   console.log('TOC Debug - First 200 chars:', markdownContent.substring(0, 200));
 
-  const lines = markdownContent.split('\n');
+  // Handle both \r\n and \n line endings
+  const lines = markdownContent.split(/\r?\n/);
   const tocItems = [];
 
   lines.forEach((line, index) => {
