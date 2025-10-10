@@ -151,3 +151,23 @@ main {
   60% { content: '..'; }
   80%, 100% { content: '...'; }
 }
+
+/* Error fallback styles */
+.error-fallback {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--monokai-bg);
+  color: var(--monokai-fg);
+}
+
+.error-fallback .loading-content {
+  text-align: center;
+}
+
+.error-fallback .loading-text {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #ff6b6b;
+}

@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import './App.css';
 import './i18n'; // Import i18n configuration
 
@@ -31,38 +30,57 @@ const LoadingFallback = () => (
   </div>
 );
 
-// Main App component that waits for i18n
-function AppContent() {
-  const { ready } = useTranslation();
-
-  if (!ready) {
-    return <LoadingFallback />;
+// Error boundary component
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
   }
 
-  return (
-    <Router>
-      <div className="App">
-        <Header />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/post/:slug" element={<BlogPost />} />
-            <Route path="/category/:category" element={<Category />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
-  );
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error('App Error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="error-fallback">
+          <div className="loading-content">
+            <div className="loading-text">Something went wrong. Please refresh the page.</div>
+          </div>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
 }
 
 function App() {
   return (
-    <Suspense fallback={<LoadingFallback />}>
-      <AppContent />
-    </Suspense>
+    <ErrorBoundary>
+      <Suspense fallback={<LoadingFallback />}>
+        <Router>
+          <div className="App">
+            <Header />
+            <main>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/post/:slug" element={<BlogPost />} />
+                <Route path="/category/:category" element={<Category />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </Router>
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 

@@ -51,7 +51,7 @@ export const articleMetadata = {
 // Hook to get articles based on current language
 export const useArticles = () => {
   const { i18n } = useTranslation();
-  const currentLang = i18n.language;
+  const currentLang = i18n?.language || 'zh'; // Fallback to 'zh' if i18n not ready
 
   // Get featured and recent posts based on current language
   const getArticlesForLanguage = (lang) => {
