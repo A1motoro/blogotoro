@@ -6,6 +6,32 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { useArticles } from '../utils/articleLoader';
 import './BlogPost.css';
 
+// Generate Table of Contents from markdown content
+const generateTOC = (markdownContent) => {
+  const lines = markdownContent.split('\n');
+  const tocItems = [];
+
+  lines.forEach((line, index) => {
+    const headingMatch = line.match(/^(#{1,6})\s+(.+)$/);
+    if (headingMatch) {
+      const level = headingMatch[1].length;
+      const title = headingMatch[2].trim();
+      const id = title.toLowerCase()
+        .replace(/[^\w\u4e00-\u9fff]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+
+      tocItems.push({
+        level,
+        title,
+        id,
+        lineIndex: index
+      });
+    }
+  });
+
+  return tocItems;
+};
+
 // Custom Monokai theme for syntax highlighting
 const monokaiTheme = {
   'code[class*="language-"]': {
@@ -165,6 +191,8 @@ const BlogPost = () => {
   const { getArticleContent, getArticleMetadata } = useArticles();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [toc, setToc] = useState([]); // Table of Contents
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     // Load article based on current language
@@ -175,11 +203,16 @@ const BlogPost = () => {
         const content = getArticleContent(slug);
 
         if (metadata && content) {
+          const articleContent = content.default || content;
           setPost({
             ...metadata,
-            content: content.default || content,
+            content: articleContent,
             tags: metadata.tags || []
           });
+
+          // Generate Table of Contents
+          const tocItems = generateTOC(articleContent);
+          setToc(tocItems);
         }
       } catch (error) {
         console.error('Error loading article:', error);
@@ -211,6 +244,26 @@ const BlogPost = () => {
     }
   }, [post, loading]);
 
+  // Track active section during scrolling
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!toc.length) return;
+
+      const scrollPosition = window.scrollY + 100; // Offset for better UX
+
+      for (let i = toc.length - 1; i >= 0; i--) {
+        const element = document.getElementById(toc[i].id);
+        if (element && element.offsetTop <= scrollPosition) {
+          setActiveSection(toc[i].id);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [toc]);
+
   if (loading) {
     return (
       <div className="container">
@@ -234,7 +287,9 @@ const BlogPost = () => {
   return (
     <div className="blog-post-page">
       <div className="container">
-        <article className="blog-post">
+        <div className="blog-layout">
+          {/* Main Content */}
+          <article className="blog-post">
           <header className="post-header">
             <h1 className="post-title">{post.title}</h1>
             <div className="post-meta">
@@ -348,7 +403,44 @@ const BlogPost = () => {
               <i className="fas fa-arrow-left"></i> Back to Home
             </Link>
           </footer>
-        </article>
+          </article>
+
+          {/* Table of Contents Sidebar */}
+          {toc.length > 0 && (
+            <aside className="toc-sidebar">
+              <div className="toc-container">
+                <h3 className="toc-title">
+                  <i className="fas fa-list"></i> Table of Contents
+                </h3>
+                <nav className="toc-nav">
+                  <ul className="toc-list">
+                    {toc.map((item) => (
+                      <li
+                        key={item.id}
+                        className={`toc-item toc-level-${item.level} ${activeSection === item.id ? 'active' : ''}`}
+                        style={{ marginLeft: `${(item.level - 1) * 1}rem` }}
+                      >
+                        <a
+                          href={`#${item.id}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            const element = document.getElementById(item.id);
+                            if (element) {
+                              element.scrollIntoView({ behavior: 'smooth' });
+                              window.history.replaceState(null, null, `#${item.id}`);
+                            }
+                          }}
+                        >
+                          {item.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </div>
+            </aside>
+          )}
+        </div>
       </div>
     </div>
   );
