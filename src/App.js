@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import './i18n'; // Import i18n configuration
 
 // Components
 import Header from './components/Header';

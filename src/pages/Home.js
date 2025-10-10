@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import './Home.css';
 
 // Mock data for blog posts (in a real app, this would come from an API or CMS)
@@ -73,12 +74,14 @@ const recentPosts = [
 ];
 
 const Home = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="home">
       {/* Featured Posts Section */}
       <section id="featured" className="featured-posts">
         <div className="container">
-          <h2 className="section-title">Featured Posts</h2>
+          <h2 className="section-title">{t('home.featured')}</h2>
           <div className="featured-grid">
             {featuredPosts.map(post => (
               <Link
@@ -106,7 +109,7 @@ const Home = () => {
       {/* Recent Posts Section */}
       <section id="blog" className="main-content">
         <div className="container">
-          <h2 className="section-title">Recent Posts</h2>
+          <h2 className="section-title">{t('home.recent')}</h2>
           <div className="blog-grid grid grid-2">
             {recentPosts.map(post => (
               <Link

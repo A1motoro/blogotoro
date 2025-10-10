@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,7 +20,7 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // In a real app, you would send this data to a server
-    alert('Thank you for your message! This is a demo contact form.');
+    alert(t('contact.thankYou'));
     setFormData({
       name: '',
       email: '',
@@ -30,18 +32,18 @@ const Contact = () => {
   return (
     <div className="contact-page">
       <div className="container">
-        <h1 className="section-title">Get In Touch</h1>
+        <h1 className="section-title">{t('contact.title')}</h1>
 
         <div className="contact-content">
           <div className="contact-info">
-            <h2>Let's Connect</h2>
-            <p>I'm always interested in discussing new opportunities, sharing ideas, or just having a chat about technology and programming.</p>
+            <h2>{t('contact.subtitle')}</h2>
+            <p>{t('contact.description')}</p>
 
             <div className="contact-methods">
               <div className="contact-method">
                 <i className="fas fa-envelope"></i>
                 <div>
-                  <h3>Email</h3>
+                  <h3>{t('contact.email')}</h3>
                   <p>Almoonex@outlook.com</p>
                 </div>
               </div>
@@ -49,7 +51,7 @@ const Contact = () => {
               <div className="contact-method">
                 <i className="fab fa-github"></i>
                 <div>
-                  <h3>GitHub</h3>
+                  <h3>{t('contact.github')}</h3>
                   <p>github.com/A1motoro</p>
                 </div>
               </div>
@@ -57,8 +59,8 @@ const Contact = () => {
               <div className="contact-method">
                 <i className="fas fa-blog"></i>
                 <div>
-                  <h3>Blog</h3>
-                  <p>Read my latest posts and tutorials</p>
+                  <h3>{t('contact.blog')}</h3>
+                  <p>{t('contact.blogDesc')}</p>
                 </div>
               </div>
             </div>
@@ -74,10 +76,10 @@ const Contact = () => {
           </div>
 
           <div className="contact-form">
-            <h2>Send a Message</h2>
+            <h2>{t('contact.sendMessage')}</h2>
             <form onSubmit={handleSubmit}>
               <div className="form-group">
-                <label htmlFor="name">Name</label>
+                <label htmlFor="name">{t('contact.name')}</label>
                 <input
                   type="text"
                   id="name"
@@ -89,7 +91,7 @@ const Contact = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">{t('contact.email')}</label>
                 <input
                   type="email"
                   id="email"
@@ -101,7 +103,7 @@ const Contact = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="subject">Subject</label>
+                <label htmlFor="subject">{t('contact.subject')}</label>
                 <input
                   type="text"
                   id="subject"
@@ -113,7 +115,7 @@ const Contact = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="message">Message</label>
+                <label htmlFor="message">{t('contact.message')}</label>
                 <textarea
                   id="message"
                   name="message"
@@ -125,7 +127,7 @@ const Contact = () => {
               </div>
 
               <button type="submit" className="btn">
-                <i className="fas fa-paper-plane"></i> Send Message
+                <i className="fas fa-paper-plane"></i> {t('contact.submit')}
               </button>
             </form>
           </div>

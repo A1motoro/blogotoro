@@ -1,0 +1,45 @@
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  color: var(--monokai-comment);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.lang-btn:hover {
+  color: var(--monokai-accent);
+  background: var(--monokai-bg-light);
+}
+
+.lang-btn.active {
+  color: var(--monokai-accent);
+  font-weight: bold;
+}
+
+.lang-separator {
+  color: var(--monokai-comment);
+  font-size: 0.9rem;
+  user-select: none;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .lang-btn {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .lang-separator {
+    font-size: 0.8rem;
+  }
+}

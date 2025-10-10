@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import './Header.css';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -30,29 +33,30 @@ const Header = () => {
             className={location.pathname === '/' ? 'active' : ''}
             onClick={closeMenu}
           >
-            Home
+            {t('nav.home')}
           </Link>
           <Link
             to="/category/programming"
             className={location.pathname.startsWith('/category') ? 'active' : ''}
             onClick={closeMenu}
           >
-            Blog
+            {t('nav.blog')}
           </Link>
           <Link
             to="/about"
             className={location.pathname === '/about' ? 'active' : ''}
             onClick={closeMenu}
           >
-            About
+            {t('nav.about')}
           </Link>
           <Link
             to="/contact"
             className={location.pathname === '/contact' ? 'active' : ''}
             onClick={closeMenu}
           >
-            Contact
+            {t('nav.contact')}
           </Link>
+          <LanguageSwitcher />
         </div>
 
         <div className="mobile-menu" onClick={toggleMenu}>
