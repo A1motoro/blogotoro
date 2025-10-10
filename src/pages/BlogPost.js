@@ -226,7 +226,6 @@ const BlogPost = () => {
 
           // Generate Table of Contents
           const tocItems = generateTOC(articleContent);
-          console.log('Generated TOC items:', tocItems);
           setToc(tocItems);
         }
       } catch (error) {
@@ -428,15 +427,10 @@ const BlogPost = () => {
                         <a
                           href={`#${item.id}`}
                           onClick={(e) => {
-                            console.log('TOC clicked:', item.id, item.title);
                             e.preventDefault();
                             const element = document.getElementById(item.id);
-                            console.log('Found element:', element);
                             if (element) {
                               element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                              console.log('Scrolled to element');
-                            } else {
-                              console.warn('TOC target element not found:', item.id);
                             }
                           }}
                         >
