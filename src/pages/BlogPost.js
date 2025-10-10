@@ -195,6 +195,22 @@ const BlogPost = () => {
     }
   }, [slug, i18n.language, getArticleContent, getArticleMetadata]);
 
+  // Handle hash navigation after content loads
+  useEffect(() => {
+    if (post && !loading) {
+      const hash = window.location.hash;
+      if (hash) {
+        // Delay scrolling to ensure DOM is fully rendered
+        setTimeout(() => {
+          const element = document.getElementById(hash.substring(1));
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      }
+    }
+  }, [post, loading]);
+
   if (loading) {
     return (
       <div className="container">
@@ -255,6 +271,71 @@ const BlogPost = () => {
                       {children}
                     </code>
                   );
+                },
+                h1({ children, ...props }) {
+                  const text = children?.toString() || '';
+                  const id = text.toLowerCase()
+                    .replace(/[^\w\u4e00-\u9fff]+/g, '-')
+                    .replace(/^-+|-+$/g, '');
+                  return <h1 id={id} {...props}>{children}</h1>;
+                },
+                h2({ children, ...props }) {
+                  const text = children?.toString() || '';
+                  const id = text.toLowerCase()
+                    .replace(/[^\w\u4e00-\u9fff]+/g, '-')
+                    .replace(/^-+|-+$/g, '');
+                  return <h2 id={id} {...props}>{children}</h2>;
+                },
+                h3({ children, ...props }) {
+                  const text = children?.toString() || '';
+                  const id = text.toLowerCase()
+                    .replace(/[^\w\u4e00-\u9fff]+/g, '-')
+                    .replace(/^-+|-+$/g, '');
+                  return <h3 id={id} {...props}>{children}</h3>;
+                },
+                h4({ children, ...props }) {
+                  const text = children?.toString() || '';
+                  const id = text.toLowerCase()
+                    .replace(/[^\w\u4e00-\u9fff]+/g, '-')
+                    .replace(/^-+|-+$/g, '');
+                  return <h4 id={id} {...props}>{children}</h4>;
+                },
+                h5({ children, ...props }) {
+                  const text = children?.toString() || '';
+                  const id = text.toLowerCase()
+                    .replace(/[^\w\u4e00-\u9fff]+/g, '-')
+                    .replace(/^-+|-+$/g, '');
+                  return <h5 id={id} {...props}>{children}</h5>;
+                },
+                h6({ children, ...props }) {
+                  const text = children?.toString() || '';
+                  const id = text.toLowerCase()
+                    .replace(/[^\w\u4e00-\u9fff]+/g, '-')
+                    .replace(/^-+|-+$/g, '');
+                  return <h6 id={id} {...props}>{children}</h6>;
+                },
+                a({ href, children, ...props }) {
+                  // 处理内部链接，转换中文标题为对应的ID
+                  if (href && href.startsWith('#')) {
+                    const targetId = href.substring(1);
+                    // 如果是中文标题，转换为对应的英文ID
+                    const englishId = targetId.toLowerCase()
+                      .replace(/[^\w\u4e00-\u9fff]+/g, '-')
+                      .replace(/^-+|-+$/g, '');
+
+                    const handleClick = (e) => {
+                      e.preventDefault();
+                      const element = document.getElementById(englishId);
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                        // Update URL without triggering navigation
+                        window.history.replaceState(null, null, `#${englishId}`);
+                      }
+                    };
+
+                    return <a href={`#${englishId}`} onClick={handleClick} {...props}>{children}</a>;
+                  }
+                  return <a href={href} {...props}>{children}</a>;
                 }
               }}
             >
