@@ -1,0 +1,137 @@
+.about-page {
+  padding: 4rem 0;
+  min-height: calc(100vh - 160px);
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 3rem;
+  align-items: start;
+  margin-bottom: 3rem;
+}
+
+.about-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 250px;
+  background: var(--monokai-accent);
+  border-radius: 50%;
+  color: var(--monokai-bg);
+  font-size: 5rem;
+  align-self: center;
+}
+
+.about-text h1 {
+  color: var(--monokai-accent);
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-text h2 {
+  color: var(--monokai-accent-secondary);
+  font-size: 1.8rem;
+  margin: 2rem 0 1rem;
+}
+
+.about-text p {
+  color: var(--monokai-comment);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.interest-item {
+  background: var(--monokai-bg-light);
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  border: 1px solid var(--monokai-border);
+  transition: all 0.3s ease;
+}
+
+.interest-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px var(--monokai-shadow);
+  border-color: var(--monokai-accent);
+}
+
+.interest-item i {
+  font-size: 2.5rem;
+  color: var(--monokai-accent);
+  margin-bottom: 1rem;
+}
+
+.interest-item h3 {
+  color: var(--monokai-accent-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.interest-item p {
+  color: var(--monokai-comment);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: var(--monokai-border);
+  color: var(--monokai-fg);
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.social-links a:hover {
+  background: var(--monokai-accent);
+  color: var(--monokai-bg);
+  transform: translateY(-2px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .about-image {
+    width: 200px;
+    height: 200px;
+    font-size: 4rem;
+    margin: 0 auto;
+  }
+
+  .about-text h1 {
+    font-size: 2rem;
+  }
+
+  .interests-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,39 @@
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  font-family: 'Courier New', monospace;
+}
+
+/* Hide scrollbars completely */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* Base Monokai colors */
+:root {
+  --monokai-bg: #272822;
+  --monokai-bg-light: #3e3d32;
+  --monokai-fg: #f8f8f2;
+  --monokai-comment: #75715e;
+  --monokai-accent: #a6e22e;
+  --monokai-accent-secondary: #66d9ef;
+  --monokai-border: #49483e;
+  --monokai-shadow: rgba(0, 0, 0, 0.3);
+  --monokai-glow: rgba(166, 226, 46, 0.6);
+}

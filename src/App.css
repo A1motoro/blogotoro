@@ -1,0 +1,116 @@
+.App {
+  min-height: 100vh;
+  background: var(--monokai-bg);
+  color: var(--monokai-fg);
+}
+
+main {
+  min-height: calc(100vh - 160px); /* Account for header and footer */
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Section titles */
+.section-title {
+  font-size: 2.5rem;
+  color: var(--monokai-accent);
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--monokai-accent), var(--monokai-accent-secondary));
+  margin: 1rem auto 0;
+  border-radius: 2px;
+}
+
+/* Button styles */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(45deg, var(--monokai-accent), var(--monokai-accent-secondary));
+  color: var(--monokai-bg);
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px var(--monokai-glow);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--monokai-accent);
+  border: 2px solid var(--monokai-accent);
+}
+
+.btn-secondary:hover {
+  background: var(--monokai-accent);
+  color: var(--monokai-bg);
+}
+
+/* Grid layouts */
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* Card styles */
+.card {
+  background: var(--monokai-bg-light);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px var(--monokai-shadow);
+  transition: all 0.3s ease;
+  border: 1px solid var(--monokai-border);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px var(--monokai-shadow);
+  border-color: var(--monokai-accent);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .grid-2, .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
