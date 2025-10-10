@@ -121,12 +121,9 @@
   font-size: 0.9em;
 }
 
+/* Code highlighting styles - syntax highlighter will override these */
+/* But we keep them for inline code */
 .post-content pre {
-  background: var(--monokai-bg-light);
-  border: 1px solid var(--monokai-border);
-  border-radius: 8px;
-  padding: 1.5rem;
-  overflow-x: auto;
   margin: 1.5rem 0;
 }
 
@@ -134,6 +131,31 @@
   background: none;
   padding: 0;
   color: var(--monokai-fg);
+}
+
+/* Override syntax highlighter styles to match theme */
+.post-content .syntax-highlighter-container {
+  margin: 1.5rem 0 !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+/* Ensure syntax highlighter uses our theme colors */
+.post-content pre[class*="language-"] {
+  background: var(--monokai-bg-light) !important;
+  border: 1px solid var(--monokai-border) !important;
+  border-radius: 8px !important;
+  margin: 1.5rem 0 !important;
+  padding: 1rem !important;
+}
+
+/* Line numbers styling */
+.post-content .linenumber {
+  color: var(--monokai-comment) !important;
+  border-right: 1px solid var(--monokai-border) !important;
+  padding-right: 1rem !important;
+  margin-right: 1rem !important;
+  user-select: none !important;
 }
 
 .post-content strong {

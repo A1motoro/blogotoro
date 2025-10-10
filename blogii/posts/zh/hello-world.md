@@ -22,19 +22,46 @@ Hello World程序是一个计算机程序，它在计算机屏幕上输出或显
 
 ### Python
 ```python
-print("Hello, World!")
+def hello_world():
+    message = "Hello, World!"
+    print(message)
+    return message
+
+# 调用函数
+result = hello_world()
 ```
 
 ### JavaScript
 ```javascript
-console.log("Hello, World!");
+function helloWorld() {
+    const message = "Hello, World!";
+    console.log(message);
+
+    // 也可以使用ES6语法
+    const greeting = `Hello, ${message.split(',')[1].trim()}!`;
+    console.log(greeting);
+
+    return message;
+}
+
+// 执行函数
+helloWorld();
 ```
 
 ### Java
 ```java
 public class HelloWorld {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        String message = "Hello, World!";
+        System.out.println(message);
+
+        // 对象示例
+        HelloWorld instance = new HelloWorld();
+        instance.displayMessage(message);
+    }
+
+    public void displayMessage(String msg) {
+        System.out.println("Message: " + msg);
     }
 }
 ```
@@ -42,9 +69,31 @@ public class HelloWorld {
 ### C++
 ```cpp
 #include <iostream>
+#include <string>
+
+class HelloWorld {
+private:
+    std::string message;
+
+public:
+    HelloWorld() : message("Hello, World!") {}
+
+    void display() {
+        std::cout << message << std::endl;
+
+        // 使用循环示例
+        for (char c : message) {
+            if (c != ' ') {
+                std::cout << c;
+            }
+        }
+        std::cout << std::endl;
+    }
+};
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    HelloWorld hello;
+    hello.display();
     return 0;
 }
 ```
