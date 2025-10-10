@@ -53,30 +53,70 @@ export const useArticles = () => {
   const { i18n } = useTranslation();
   const currentLang = i18n?.language || 'zh'; // Fallback to 'zh' if i18n not ready
 
-  // Get featured and recent posts based on current language
-  const getArticlesForLanguage = (lang) => {
-    const effectiveLang = articleContents[lang] && Object.keys(articleContents[lang]).length > 0 ? lang : 'zh';
+  // Safe helper functions with error handling
+  const safeGetArticlesForLanguage = (lang) => {
+    try {
+      if (!articleContents || !articleMetadata) {
+        return []; // Return empty array if data not loaded
+      }
 
-    return Object.keys(articleContents[effectiveLang] || {}).map(slug => ({
-      id: slug,
-      ...articleMetadata[slug][effectiveLang],
-      icon: getIconForCategory(articleMetadata[slug][effectiveLang].category)
-    }));
+      const effectiveLang = articleContents[lang] && Object.keys(articleContents[lang]).length > 0 ? lang : 'zh';
+
+      if (!articleContents[effectiveLang]) {
+        return []; // Return empty array if language data not available
+      }
+
+      return Object.keys(articleContents[effectiveLang]).map(slug => {
+        try {
+          const metadata = articleMetadata[slug]?.[effectiveLang];
+          if (!metadata) {
+            return null; // Skip invalid articles
+          }
+
+          return {
+            id: slug,
+            ...metadata,
+            icon: getIconForCategory(metadata.category)
+          };
+        } catch (error) {
+          console.warn('Error processing article:', slug, error);
+          return null;
+        }
+      }).filter(Boolean); // Remove null entries
+    } catch (error) {
+      console.warn('Error in getArticlesForLanguage:', error);
+      return [];
+    }
   };
 
   const getArticleContent = (slug) => {
-    const lang = articleContents[currentLang] && articleContents[currentLang][slug] ? currentLang : 'zh';
-    return articleContents[lang][slug];
+    try {
+      if (!slug || !articleContents) return '';
+      const lang = articleContents[currentLang] && articleContents[currentLang][slug] ? currentLang : 'zh';
+      return articleContents[lang]?.[slug] || '';
+    } catch (error) {
+      console.warn('Error getting article content:', slug, error);
+      return '';
+    }
   };
 
   const getArticleMetadata = (slug) => {
-    const lang = articleMetadata[slug] && articleMetadata[slug][currentLang] ? currentLang : 'zh';
-    return articleMetadata[slug][lang];
+    try {
+      if (!slug || !articleMetadata) return null;
+      const lang = articleMetadata[slug] && articleMetadata[slug][currentLang] ? currentLang : 'zh';
+      return articleMetadata[slug]?.[lang] || null;
+    } catch (error) {
+      console.warn('Error getting article metadata:', slug, error);
+      return null;
+    }
   };
 
+  // Safe data retrieval
+  const articles = safeGetArticlesForLanguage(currentLang);
+
   return {
-    featuredPosts: getArticlesForLanguage(currentLang).slice(0, 1), // First article as featured
-    recentPosts: getArticlesForLanguage(currentLang),
+    featuredPosts: articles.slice(0, 1), // First article as featured
+    recentPosts: articles,
     getArticleContent,
     getArticleMetadata,
     currentLanguage: currentLang
