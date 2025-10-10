@@ -8,9 +8,6 @@ import './BlogPost.css';
 
 // Generate Table of Contents from markdown content
 const generateTOC = (markdownContent) => {
-  console.log('TOC Debug - Content length:', markdownContent.length);
-  console.log('TOC Debug - First 200 chars:', markdownContent.substring(0, 200));
-
   // Handle both \r\n and \n line endings
   const lines = markdownContent.split(/\r?\n/);
   const tocItems = [];
@@ -24,7 +21,6 @@ const generateTOC = (markdownContent) => {
         .replace(/[^\w\u4e00-\u9fff]+/g, '-')
         .replace(/^-+|-+$/g, '');
 
-      console.log(`TOC Debug - Found heading: "${line}" -> "${title}" (level ${level})`);
       tocItems.push({
         level,
         title,
@@ -34,7 +30,6 @@ const generateTOC = (markdownContent) => {
     }
   });
 
-  console.log('TOC Debug - Generated items:', tocItems.length, tocItems);
   return tocItems;
 };
 
@@ -412,7 +407,7 @@ const BlogPost = () => {
         </article>
 
           {/* Table of Contents Sidebar */}
-          {console.log('TOC Render Debug - TOC length:', toc.length, 'TOC items:', toc) || (toc.length > 0 && (
+          {toc.length > 0 && (
             <aside className="toc-sidebar">
               <div className="toc-container">
                 <h3 className="toc-title">
