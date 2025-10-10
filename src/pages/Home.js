@@ -75,41 +75,30 @@ const recentPosts = [
 const Home = () => {
   return (
     <div className="home">
-      {/* Debug info */}
-      <div style={{ padding: '20px', background: '#ff6b6b', color: 'white', margin: '20px' }}>
-        Debug: Found {featuredPosts.length} featured posts and {recentPosts.length} recent posts
-      </div>
-
       {/* Featured Posts Section */}
       <section id="featured" className="featured-posts">
         <div className="container">
           <h2 className="section-title">Featured Posts</h2>
           <div className="featured-grid">
-            {featuredPosts.length === 0 ? (
-              <div style={{ padding: '20px', background: '#ffd93d', color: '#333', borderRadius: '8px' }}>
-                No featured posts found
-              </div>
-            ) : (
-              featuredPosts.map(post => (
-                <Link
-                  key={post.id}
-                  to={`/post/${post.id}`}
-                  className="featured-card main-featured card"
-                >
-                  <div className="blog-image">
-                    <i className={post.icon}></i>
+            {featuredPosts.map(post => (
+              <Link
+                key={post.id}
+                to={`/post/${post.id}`}
+                className="featured-card main-featured card"
+              >
+                <div className="blog-image">
+                  <i className={post.icon}></i>
+                </div>
+                <div className="blog-content">
+                  <h3 className="blog-title">{post.title}</h3>
+                  <div className="blog-meta">
+                    Published on {post.date} • {post.readTime} • {post.category}
                   </div>
-                  <div className="blog-content">
-                    <h3 className="blog-title">{post.title}</h3>
-                    <div className="blog-meta">
-                      Published on {post.date} • {post.readTime} • {post.category}
-                    </div>
-                    <p className="blog-excerpt">{post.excerpt}</p>
-                    <div className="read-more">Read Full Post →</div>
-                  </div>
-                </Link>
-              ))
-            )}
+                  <p className="blog-excerpt">{post.excerpt}</p>
+                  <div className="read-more">Read Full Post →</div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -119,24 +108,25 @@ const Home = () => {
         <div className="container">
           <h2 className="section-title">Recent Posts</h2>
           <div className="blog-grid grid grid-2">
-            {recentPosts.length === 0 ? (
-              <div style={{ padding: '20px', background: '#ffd93d', color: '#333', borderRadius: '8px', gridColumn: '1 / -1' }}>
-                No recent posts found
-              </div>
-            ) : (
-              recentPosts.map(post => (
-                <div key={post.id} style={{ padding: '10px', background: '#4ecdc4', color: 'white', margin: '10px', borderRadius: '8px' }}>
-                  <strong>{post.title}</strong><br/>
-                  <small>{post.date} • {post.category}</small><br/>
-                  <Link
-                    to={`/post/${post.id}`}
-                    style={{ color: '#fff', textDecoration: 'underline' }}
-                  >
-                    Read Post →
-                  </Link>
+            {recentPosts.map(post => (
+              <Link
+                key={post.id}
+                to={`/post/${post.id}`}
+                className="blog-card card"
+              >
+                <div className="blog-image">
+                  <i className={post.icon}></i>
                 </div>
-              ))
-            )}
+                <div className="blog-content">
+                  <h3 className="blog-title">{post.title}</h3>
+                  <div className="blog-meta">
+                    Published on {post.date} • {post.readTime}
+                  </div>
+                  <p className="blog-excerpt">{post.excerpt}</p>
+                  <div className="read-more">Read More →</div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
