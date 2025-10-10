@@ -8,6 +8,7 @@ import './BlogPost.css';
 
 // Generate Table of Contents from markdown content
 const generateTOC = (markdownContent) => {
+  console.log('Generating TOC from content length:', markdownContent.length);
   const lines = markdownContent.split('\n');
   const tocItems = [];
 
@@ -20,6 +21,7 @@ const generateTOC = (markdownContent) => {
         .replace(/[^\w\u4e00-\u9fff]+/g, '-')
         .replace(/^-+|-+$/g, '');
 
+      console.log(`Found heading: ${title} (level ${level}) -> id: ${id}`);
       tocItems.push({
         level,
         title,
@@ -29,6 +31,7 @@ const generateTOC = (markdownContent) => {
     }
   });
 
+  console.log('Generated TOC items:', tocItems.length);
   return tocItems;
 };
 
@@ -212,6 +215,7 @@ const BlogPost = () => {
 
           // Generate Table of Contents
           const tocItems = generateTOC(articleContent);
+          console.log('TOC Items:', tocItems); // Debug: check if TOC is generated
           setToc(tocItems);
         }
       } catch (error) {
@@ -406,13 +410,13 @@ const BlogPost = () => {
           </article>
 
           {/* Table of Contents Sidebar */}
-          {toc.length > 0 && (
-            <aside className="toc-sidebar">
-              <div className="toc-container">
-                <h3 className="toc-title">
-                  <i className="fas fa-list"></i> Table of Contents
-                </h3>
-                <nav className="toc-nav">
+          <aside className="toc-sidebar">
+            <div className="toc-container">
+              <h3 className="toc-title">
+                <i className="fas fa-list"></i> Table of Contents ({toc.length})
+              </h3>
+              <nav className="toc-nav">
+                {toc.length > 0 ? (
                   <ul className="toc-list">
                     {toc.map((item) => (
                       <li
@@ -436,10 +440,14 @@ const BlogPost = () => {
                       </li>
                     ))}
                   </ul>
-                </nav>
-              </div>
-            </aside>
-          )}
+                ) : (
+                  <p style={{ color: 'var(--monokai-comment)', fontSize: '0.9rem' }}>
+                    No headings found
+                  </p>
+                )}
+              </nav>
+            </div>
+          </aside>
         </div>
       </div>
     </div>
