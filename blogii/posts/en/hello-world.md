@@ -22,19 +22,46 @@ A Hello World program is a computer program that outputs or displays the message
 
 ### Python
 ```python
-print("Hello, World!")
+def hello_world():
+    message = "Hello, World!"
+    print(message)
+    return message
+
+# Call function
+result = hello_world()
 ```
 
 ### JavaScript
 ```javascript
-console.log("Hello, World!");
+function helloWorld() {
+    const message = "Hello, World!";
+    console.log(message);
+
+    // ES6 syntax example
+    const greeting = `Hello, ${message.split(',')[1].trim()}!`;
+    console.log(greeting);
+
+    return message;
+}
+
+// Execute function
+helloWorld();
 ```
 
 ### Java
 ```java
 public class HelloWorld {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        String message = "Hello, World!";
+        System.out.println(message);
+
+        // Object example
+        HelloWorld instance = new HelloWorld();
+        instance.displayMessage(message);
+    }
+
+    public void displayMessage(String msg) {
+        System.out.println("Message: " + msg);
     }
 }
 ```
@@ -42,9 +69,31 @@ public class HelloWorld {
 ### C++
 ```cpp
 #include <iostream>
+#include <string>
+
+class HelloWorld {
+private:
+    std::string message;
+
+public:
+    HelloWorld() : message("Hello, World!") {}
+
+    void display() {
+        std::cout << message << std::endl;
+
+        // Loop example
+        for (char c : message) {
+            if (c != ' ') {
+                std::cout << c;
+            }
+        }
+        std::cout << std::endl;
+    }
+};
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    HelloWorld hello;
+    hello.display();
     return 0;
 }
 ```
