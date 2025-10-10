@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import ReactMarkdown from 'react-markdown';
 import { useArticles } from '../utils/articleLoader';
 import './BlogPost.css';
 
@@ -79,10 +80,9 @@ const BlogPost = () => {
             )}
           </header>
 
-          <div
-            className="post-content"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+          <div className="post-content">
+            <ReactMarkdown>{post.content}</ReactMarkdown>
+          </div>
 
           <footer className="post-footer">
             <Link to="/" className="btn btn-secondary">

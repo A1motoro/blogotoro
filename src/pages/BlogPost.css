@@ -72,9 +72,118 @@
   margin: 1.5rem 0 0.75rem;
 }
 
+/* Markdown content styling */
+.post-content {
+  color: var(--monokai-fg);
+  line-height: 1.7;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  color: var(--monokai-accent);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.post-content h1 {
+  font-size: 2rem;
+  border-bottom: 2px solid var(--monokai-accent);
+  padding-bottom: 0.5rem;
+}
+
+.post-content h2 {
+  font-size: 1.6rem;
+  border-bottom: 1px solid var(--monokai-accent-secondary);
+  padding-bottom: 0.3rem;
+}
+
+.post-content h3 {
+  font-size: 1.4rem;
+}
+
 .post-content p {
   margin-bottom: 1.5rem;
   color: var(--monokai-fg);
+}
+
+
+.post-content code {
+  background: var(--monokai-bg);
+  color: var(--monokai-accent);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+.post-content pre {
+  background: var(--monokai-bg-light);
+  border: 1px solid var(--monokai-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.post-content pre code {
+  background: none;
+  padding: 0;
+  color: var(--monokai-fg);
+}
+
+.post-content strong {
+  color: var(--monokai-accent);
+  font-weight: 600;
+}
+
+.post-content em {
+  color: var(--monokai-accent-secondary);
+}
+
+.post-content a {
+  color: var(--monokai-accent-secondary);
+  text-decoration: underline;
+}
+
+.post-content a:hover {
+  color: var(--monokai-accent);
+}
+
+.post-content hr {
+  border: none;
+  border-top: 1px solid var(--monokai-border);
+  margin: 2rem 0;
+}
+
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+.post-content th,
+.post-content td {
+  border: 1px solid var(--monokai-border);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.post-content th {
+  background: var(--monokai-bg-light);
+  color: var(--monokai-accent);
+  font-weight: 600;
+}
+
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1rem 0;
 }
 
 .post-content ul,
