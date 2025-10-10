@@ -434,7 +434,7 @@ const BlogPost = () => {
                               setTimeout(() => {
                                 element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                               }, 0);
-                              window.history.replaceState(null, null, `#${item.id}`);
+                              // Remove URL update - just scroll without changing URL
                             }
                           }}
                         >
