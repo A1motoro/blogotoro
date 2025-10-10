@@ -430,11 +430,9 @@ const BlogPost = () => {
                             e.preventDefault();
                             const element = document.getElementById(item.id);
                             if (element) {
-                              // Use setTimeout to ensure smooth scrolling works properly
-                              setTimeout(() => {
-                                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                              }, 0);
-                              // Remove URL update - just scroll without changing URL
+                              element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            } else {
+                              console.warn('TOC target element not found:', item.id);
                             }
                           }}
                         >
