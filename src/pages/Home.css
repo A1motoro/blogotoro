@@ -69,7 +69,7 @@
 
 .blog-meta {
   font-size: 0.9rem;
-  color: #8b949e;
+  color: var(--monokai-comment);
   margin-bottom: 1rem;
 }
 
