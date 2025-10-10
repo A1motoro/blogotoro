@@ -1,13 +1,5 @@
 /* Basic styling for Home page */
 
-/* Color variables for Monokai theme */
-:root {
-  --monokai-bg: #0d1117;
-  --monokai-fg: #f8f8f2;
-  --monokai-accent: #a6e22e;
-  --monokai-accent-secondary: #66d9ef;
-}
-
 /* Home container */
 .home {
   min-height: 100vh;

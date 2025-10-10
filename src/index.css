@@ -12,7 +12,11 @@ html, body {
   overflow-y: auto;
   height: 100%;
   width: 100%;
-  font-family: 'Courier New', monospace;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Hide scrollbars completely */
@@ -27,8 +31,8 @@ html {
 
 /* Base Monokai colors */
 :root {
-  --monokai-bg: #272822;
-  --monokai-bg-light: #3e3d32;
+  --monokai-bg: #1a1a1a;
+  --monokai-bg-light: #2d2d2d;
   --monokai-fg: #f8f8f2;
   --monokai-comment: #75715e;
   --monokai-accent: #a6e22e;
